@@ -16,40 +16,9 @@
       <div class="list-group-item" ng-repeat="product in store.products">
         <h3>{{product.name}} <em class="pull-right">{{product.price | currency}}</em></h3>
         <!-- Image Gallery -->
-        <div ng-controller="GalleryController as gallery"  ng-show="product.images.length">
-          <div class="img-wrap">
-            <img ng-src="{{product.images[gallery.current]}}" />
-          </div>
-          <ul class="img-thumbnails clearfix">
-            <li class="small-image pull-left thumbnail" ng-repeat="image in product.images">
-              <img ng-src="{{image}}" />
-            </li>
-          </ul>
-        </div>
+        <product-gallery></product-gallery>
         <!-- Product Tabs -->
-        <section ng-controller="TabController as tab">
-          <ul class="nav nav-pills">
-            <li ng-class="{ active:tab.isSet(1) }">
-              <a href="" ng-click="tab.setTab(1)">Description</a>
-            </li>
-            <li ng-class="{ active:tab.isSet(2) }">
-              <a href="" ng-click="tab.setTab(2)">Specs</a>
-            </li>
-            <li ng-class="{ active:tab.isSet(3) }">
-              <a href="" ng-click="tab.setTab(3)">Reviews</a>
-            </li>
-          </ul>
-          <!-- Description Tab's Content -->
-          <div><h1 ng-show="tab.isSet(1)">Hello</h1>
-            <product-description ng-show="tab.isSet(1)"></product-description>
-          </div>
-          <!-- Spec Tab's Content -->
-          <div ng-show="tab.isSet(2)" product-specs>
-          </div>
-
-          <!--  Review Tab's Content  -->
-          <product-reviews ng-show="tab.isSet(3)"></product-reviews>
-        </section>
+        <product-tabs></product-tabs>
       </div>
     </div>
   </body>
