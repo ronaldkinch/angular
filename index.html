@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html ng-app="gemStore">
+<html>
   <head>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
   <script type="text/javascript" src="public/angular.min.js"></script>
   <script type="text/javascript" src="public/app.js"></script>
+  <script type="text/javascript" src="public/products.js"></script>
   </head>
-  <body ng-controller="StoreController as store">
+  <body>
+    <main ng-app="gemStore">
+    <div ng-controller="StoreController as store" >
     <!-- Store Header -->
     <header>
       <h1 class="text-center">Flatlander Crafted Gems</h1>
@@ -21,5 +24,7 @@
         <product-tabs></product-tabs>
       </div>
     </div>
+    </div>
+    </main>
   </body>
 </html>

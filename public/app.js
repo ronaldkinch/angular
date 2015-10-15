@@ -1,16 +1,29 @@
 (function() {
-  var app = angular.module('gemStore', []);
+  var app = angular.module('gemStore', ['store-products']);
 
-  app.controller('StoreController', function(){
-    this.products = gems;
-  });
+  app.controller('StoreController', [ '$http', function($http) {
+    var store = this;
+    store.products = [];
+    $http.get('/products.json').success(function(data) {
+      store.products = data;
+    });
+  }]);
+  // app.controller('StoreController', function(){
+  //   this.products = gems;
+  // });
 
-  app.controller('GalleryController', function(){
-    this.current = 0;
-    this.setCurrent = function(newGallery){
-      this.current = newGallery || 0;
-    };
-  });
+  // $http.post('/path/to/resource.json', { param: 'value' });
+  // $http.delete('/path/to/resource.json');
+  // $http({ method: 'OPTIONS', url: '/path/to/resource.json' });
+  // $http({ method: 'PATCH', url: '/path/to/resource.json' });
+  // $http({ method: 'TRACE', url: '/path/to/resource.json' });
+
+  // app.controller('GalleryController', function(){
+  //   this.current = 0;
+  //   this.setCurrent = function(newGallery){
+  //     this.current = newGallery || 0;
+  //   };
+  // });
 
   app.controller('ReviewController', function() {
     this.review = {};
@@ -20,59 +33,59 @@
       this.review = {};    };
   });
 
-  app.directive('productDescription', function(){
-    return {
-      restrict: 'E',
-      templateUrl: "product-description.html"
-    };
-  });
+  // app.directive('productDescription', function(){
+  //   return {
+  //     restrict: 'E',
+  //     templateUrl: "product-description.html"
+  //   };
+  // });
 
-  app.directive('productReviews', function(){
-    return {
-      restrict: 'E',
-      templateUrl: "product-reviews.html"
-    };
-  });
+  // app.directive('productReviews', function(){
+  //   return {
+  //     restrict: 'E',
+  //     templateUrl: "product-reviews.html"
+  //   };
+  // });
 
-  app.directive('productSpecs', function(){
-    return {
-      restrict: 'A',
-      templateUrl: "product-specs.html"
-    };
-  });
+  // app.directive('productSpecs', function(){
+  //   return {
+  //     restrict: 'A',
+  //     templateUrl: "product-specs.html"
+  //   };
+  // });
 
-  app.directive('productTabs', function(){
-    return {
-      restrict: 'E',
-      templateUrl: "product-tabs.html",
-      controller: function() {
-        this.tab = 1;
+  // app.directive('productTabs', function(){
+  //   return {
+  //     restrict: 'E',
+  //     templateUrl: "product-tabs.html",
+  //     controller: function() {
+  //       this.tab = 1;
 
-        this.setTab = function(newValue){
-          this.tab = newValue;
-        };
+  //       this.setTab = function(newValue){
+  //         this.tab = newValue;
+  //       };
 
-        this.isSet = function(tabName){
-          return this.tab === tabName;
-        };
-      },
-      controllerAs: "tab"
-    };
-  });
+  //       this.isSet = function(tabName){
+  //         return this.tab === tabName;
+  //       };
+  //     },
+  //     controllerAs: "tab"
+  //   };
+  // });
 
-  app.directive('productGallery', function(){
-    return {
-      restrict: 'E',
-      templateUrl: "product-gallery.html",
-      controller: function() {
-        this.current = 0;
-        this.setCurrent = function(newGallery){
-          this.current = newGallery || 0;
-        };
-      },
-      controllerAs: "gallery"
-    };
-  });
+  // app.directive('productGallery', function(){
+  //   return {
+  //     restrict: 'E',
+  //     templateUrl: "product-gallery.html",
+  //     controller: function() {
+  //       this.current = 0;
+  //       this.setCurrent = function(newGallery){
+  //         this.current = newGallery || 0;
+  //       };
+  //     },
+  //     controllerAs: "gallery"
+  //   };
+  // });
 
   var gems = [{
       name: 'Azurite',
